@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Tarjeta_presentacion</string>
+
+        <string name="app_name">perfil</string>
+        <string name="sitio_web">Sitio Web</string>
+        <string name="ubicacion">Ubicación</string>
+        <string name="telefono">Teléfono</string>
+        <string name="correo">Correo</string>
+        <string name="txt_configuracion">Habilitar ubicación</string>
+        <string name="txt_mapa">Ver mapa</string>
+
+
 </resources>
