@@ -40,7 +40,7 @@
             android:id="@+id/txtname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jeremy Salinas"
+            android:text="Jeremy "
             android:textSize="@dimen/size_txt_label"
             android:textColor="@color/text_secondary"
             android:layout_marginTop="@dimen/margin_top_default"/>
