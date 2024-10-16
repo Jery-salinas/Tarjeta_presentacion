@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,EditActivity::class.java)
 
         }
-
+        return super.onOptionsItemSelected(item)
     }
 
     private fun updateUI(

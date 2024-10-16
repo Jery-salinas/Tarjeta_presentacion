@@ -7,6 +7,7 @@
         <string name="correo">Correo</string>
         <string name="txt_configuracion">Habilitar ubicación</string>
         <string name="txt_mapa">Ver mapa</string>
+        <string name="camera_icon">Seleccionar imagen de perfil</string>
 
 
 </resources>
