@@ -49,6 +49,119 @@
                 app:layout_constraintStart_toStartOf="@id/card_profile" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            app:helperText="Obligatorio"
+            app:startIconDrawable="@drawable/icon_person"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="30"
+                android:inputType="textPersonName|textCapWords"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo"
+            app:helperText="Obligatorio"
+            app:startIconDrawable="@drawable/icon_email"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="30"
+                android:inputType="textPersonName|textCapWords"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Telefono"
+            app:helperText="Obligatorio"
+            app:startIconDrawable="@drawable/icon_phone"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="30"
+                android:inputType="textPersonName|textCapWords"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSitioWeb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sitio web"
+            app:helperText="Obligatorio"
+            app:startIconDrawable="@drawable/icon_web"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieSitioWeb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="30"
+                android:inputType="textPersonName|textCapWords"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Campo Latitud con 50% de ancho -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilLatitud"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:startIconDrawable="@drawable/location_icon"
+                android:hint="Latitud"
+                app:helperText="Obligatorio">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tieLatitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Campo Longitud con 50% de ancho -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilLongitud"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:startIconDrawable="@drawable/location_icon"
+                android:hint="Longitud"
+                app:helperText="Obligatorio">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tieLongitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>
