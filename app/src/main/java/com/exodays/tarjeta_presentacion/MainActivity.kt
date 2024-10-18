@@ -39,11 +39,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_edit){
-            val intent = Intent(this,EditActivity::class.java)
-
+        return when (item.itemId) {
+            R.id.action_edit -> {
+                val intent = Intent(this, EditActivity::class.java)
+                startActivity(intent) // Iniciar la EditActivity
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun updateUI(
