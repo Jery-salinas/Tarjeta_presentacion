@@ -48,6 +48,22 @@
                 app:layout_constraintEnd_toEndOf="@id/card_profile"
                 app:layout_constraintStart_toStartOf="@id/card_profile" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilMatricula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Matricula"
+            app:helperText="Obligatorio"
+            app:startIconDrawable="@drawable/icon_credencial"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieMatricula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="30"
+                android:inputType="textPersonName|textCapWords"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilNombre"
@@ -105,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Sitio web"
-            app:helperText="Obligatorio"
+
             app:startIconDrawable="@drawable/icon_web"
             >
             <com.google.android.material.textfield.TextInputEditText
@@ -131,7 +147,7 @@
                 android:layout_marginEnd="8dp"
                 app:startIconDrawable="@drawable/location_icon"
                 android:hint="Latitud"
-                app:helperText="Obligatorio">
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieLatitud"
@@ -150,7 +166,7 @@
                 android:layout_marginStart="8dp"
                 app:startIconDrawable="@drawable/location_icon"
                 android:hint="Longitud"
-                app:helperText="Obligatorio">
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieLongitud"

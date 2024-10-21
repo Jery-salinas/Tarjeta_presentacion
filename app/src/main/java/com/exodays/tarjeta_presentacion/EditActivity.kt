@@ -19,7 +19,7 @@ class EditActivity : AppCompatActivity() {
         binding = ActivityEdit2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Configurar el padding para las barras del sistema
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -27,18 +27,16 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_edit, menu)
         return true
     }
 
-    // Controla las acciones cuando se selecciona una opción en el menú
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_send -> {
                 if (validateFields()) {
-                    showConfirmationDialog()  // Muestra el mensaje de confirmación si los datos son válidos
+                    showConfirmationDialog()
                 } else {
                     Toast.makeText(this, "Verifica tus datos!!", Toast.LENGTH_SHORT).show()
                 }
@@ -52,20 +50,30 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-    // Validaciones
+    // Validaciones de los campos
     private fun validateFields(): Boolean {
         var isValid = true
 
-        // Validar Nombre (debe tener al menos 3 caracteres y un apellido)
+        // Validar Matrícula
+        val matricula = binding.tieMatricula.text.toString().trim()
+        val matriculaPattern = "^S\\d{8}$".toRegex()
+        if (matricula.isEmpty() || !matricula.matches(matriculaPattern)) {
+            binding.tilMatricula.error = "Matrícula inválida, debe empezar con 'S' seguido de 8 dígitos"
+            isValid = false
+        } else {
+            binding.tilMatricula.error = null
+        }
+
+        // Validar Nombre
         val name = binding.tieNombre.text.toString().trim()
-        if (name.isEmpty() || name.length < 3 || !name.contains(" ")) {
-            binding.tilNombre.error = "Nombre inválido, debe incluir un apellido y tener al menos 3 caracteres"
+        if (name.isEmpty() || name.length < 3) {
+            binding.tilNombre.error = "Nombre inválido, debe tener al menos 3 caracteres"
             isValid = false
         } else {
             binding.tilNombre.error = null
         }
 
-        // Validar Correo (debe seguir un formato de correo válido y tener dominios específicos)
+        // Validar Correo
         val email = binding.tieCorreo.text.toString().trim()
         val emailPattern = "^[\\w\\.-]+@(gmail|hotmail|uv)\\.(com|mx)\$".toRegex()
         if (email.isEmpty() || !email.matches(emailPattern)) {
@@ -75,7 +83,7 @@ class EditActivity : AppCompatActivity() {
             binding.tilCorreo.error = null
         }
 
-        // Validar Teléfono (debe tener 10 dígitos numéricos)
+        // Validar Teléfono
         val phone = binding.tieTelefono.text.toString().trim()
         if (phone.isEmpty() || !phone.matches("\\d{10}".toRegex())) {
             binding.tilTelefono.error = "Teléfono inválido, debe tener exactamente 10 dígitos"
@@ -84,10 +92,34 @@ class EditActivity : AppCompatActivity() {
             binding.tilTelefono.error = null
         }
 
+        // Validar Sitio Web
+        val sitioWeb = binding.tieSitioWeb.text.toString().trim()
+        val urlPattern = "^https?://[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)+(/[^\\s]*)?\$".toRegex()
+        if (sitioWeb.isNotEmpty() && !sitioWeb.matches(urlPattern)) {
+            binding.tilSitioWeb.error = "Formato de URL inválido"
+            isValid = false
+        } else {
+            binding.tilSitioWeb.error = null
+        }
+
+        // Validar Latitud y Longitud
+        val lat = binding.tieLatitud.text.toString().trim()
+        val lon = binding.tieLongitud.text.toString().trim()
+        try {
+            lat.toDouble()
+            lon.toDouble()
+            binding.tilLatitud.error = null
+            binding.tilLongitud.error = null
+        } catch (e: NumberFormatException) {
+            binding.tilLatitud.error = "Latitud inválida"
+            binding.tilLongitud.error = "Longitud inválida"
+            isValid = false
+        }
+
         return isValid
     }
 
-    // Mostrar mensaje de confirmación si los datos son válidos
+    // Mostrar mensaje de confirmación
     private fun showConfirmationDialog() {
         AlertDialog.Builder(this)
             .setTitle("Confirmación")
@@ -99,10 +131,14 @@ class EditActivity : AppCompatActivity() {
             .show()
     }
 
-    // Limpiar los campos después de confirmar
+
     private fun clearFields() {
+        binding.tieMatricula.text?.clear()
         binding.tieNombre.text?.clear()
         binding.tieCorreo.text?.clear()
         binding.tieTelefono.text?.clear()
+        binding.tieSitioWeb.text?.clear()
+        binding.tieLatitud.text?.clear()
+        binding.tieLongitud.text?.clear()
     }
 }
