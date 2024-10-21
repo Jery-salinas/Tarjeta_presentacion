@@ -58,7 +58,7 @@ class EditActivity : AppCompatActivity() {
         val matricula = binding.tieMatricula.text.toString().trim()
         val matriculaPattern = "^S\\d{8}$".toRegex()
         if (matricula.isEmpty() || !matricula.matches(matriculaPattern)) {
-            binding.tilMatricula.error = "Matrícula inválida, debe empezar con 'S' seguido de 8 dígitos"
+            binding.tilMatricula.error = "Matrícula incorrecto , debe empezar con 'S' seguido de 8 dígitos"
             isValid = false
         } else {
             binding.tilMatricula.error = null
@@ -67,7 +67,7 @@ class EditActivity : AppCompatActivity() {
         // Validar Nombre
         val name = binding.tieNombre.text.toString().trim()
         if (name.isEmpty() || name.length < 3) {
-            binding.tilNombre.error = "Nombre inválido, debe tener al menos 3 caracteres"
+            binding.tilNombre.error = "Nombre incorrecto, debe tener al menos 3 caracteres"
             isValid = false
         } else {
             binding.tilNombre.error = null
@@ -77,7 +77,7 @@ class EditActivity : AppCompatActivity() {
         val email = binding.tieCorreo.text.toString().trim()
         val emailPattern = "^[\\w\\.-]+@(gmail|hotmail|uv)\\.(com|mx)\$".toRegex()
         if (email.isEmpty() || !email.matches(emailPattern)) {
-            binding.tilCorreo.error = "Correo inválido, solo se acepta @gmail.com, @hotmail.com o @uv.mx"
+            binding.tilCorreo.error = "Correo incorrecto, solo se acepta @gmail.com, @hotmail.com o @uv.mx"
             isValid = false
         } else {
             binding.tilCorreo.error = null
@@ -86,7 +86,7 @@ class EditActivity : AppCompatActivity() {
         // Validar Teléfono
         val phone = binding.tieTelefono.text.toString().trim()
         if (phone.isEmpty() || !phone.matches("\\d{10}".toRegex())) {
-            binding.tilTelefono.error = "Teléfono inválido, debe tener exactamente 10 dígitos"
+            binding.tilTelefono.error = "Teléfono incorrecto, debe tener exactamente 10 dígitos"
             isValid = false
         } else {
             binding.tilTelefono.error = null
@@ -96,7 +96,7 @@ class EditActivity : AppCompatActivity() {
         val sitioWeb = binding.tieSitioWeb.text.toString().trim()
         val urlPattern = "^https?://[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)+(/[^\\s]*)?\$".toRegex()
         if (sitioWeb.isNotEmpty() && !sitioWeb.matches(urlPattern)) {
-            binding.tilSitioWeb.error = "Formato de URL inválido"
+            binding.tilSitioWeb.error = "Formato de URL incorrecto"
             isValid = false
         } else {
             binding.tilSitioWeb.error = null
@@ -122,9 +122,9 @@ class EditActivity : AppCompatActivity() {
     // Mostrar mensaje de confirmación
     private fun showConfirmationDialog() {
         AlertDialog.Builder(this)
-            .setTitle("Confirmación")
-            .setMessage("Datos modificados correctamente")
-            .setPositiveButton("OK") { dialog, _ ->
+            .setTitle("Listo")
+            .setMessage("Datos modificados")
+            .setPositiveButton("Terminar") { dialog, _ ->
                 dialog.dismiss()
                 clearFields()
             }
