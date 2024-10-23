@@ -8,11 +8,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.activity.result.contract.ActivityResultContracts
 import com.exodays.tarjeta_presentacion.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var latitud: Double = 0.0
+    private var longitud: Double = 0.0
 
 
 
@@ -31,6 +34,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private val editResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode == RESULT_OK) {
+            val nombre = it.data?.getStringExtra(getString(R.string.k_nombre))
+            val correo = it.data?.getStringExtra(getString(R.string.k_correo))
+            val telefono = it.data?.getStringExtra(getString(R.string.k_telefono))
+            val sitio = it.data?.getStringExtra(getString(R.string.k_sitioweb))
+            latitud = it.data?.getStringExtra(getString(R.string.k_latitud))?.toDouble() ?: 0.0
+            longitud = it.data?.getStringExtra(getString(R.string.k_longitud))?.toDouble() ?: 0.0
+
+
+            updateUI(nombre!!, correo!!, telefono!!, sitio!!)
+        }
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
 

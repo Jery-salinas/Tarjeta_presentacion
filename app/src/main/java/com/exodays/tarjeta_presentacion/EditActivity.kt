@@ -1,5 +1,6 @@
 package com.exodays.tarjeta_presentacion
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -48,6 +49,19 @@ class EditActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    fun sendData(){
+        var intent = Intent()
+
+        // Extraer como recurso
+        intent.putExtra(getString(R.string.k_nombre), binding.tieNombre.text.toString())
+        intent.putExtra(getString(R.string.k_correo), binding.tieCorreo.text.toString())
+        intent.putExtra(getString(R.string.k_telefono), binding.tieTelefono.text.toString())
+        intent.putExtra(getString(R.string.k_sitioweb), binding.tieSitioWeb.text.toString())
+        intent.putExtra(getString(R.string.k_latitud), binding.tieLatitud.text.toString())
+        intent.putExtra(getString(R.string.k_longitud), binding.tieLongitud.text.toString())
+
+
     }
 
     // Validaciones de los campos

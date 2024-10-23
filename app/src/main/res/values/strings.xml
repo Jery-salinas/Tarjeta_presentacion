@@ -8,6 +8,12 @@
         <string name="txt_configuracion">Habilitar ubicación</string>
         <string name="txt_mapa">Ver mapa</string>
         <string name="camera_icon">Seleccionar imagen de perfil</string>
+        <string name="k_nombre">nombre</string>
+        <string name="k_correo">correo</string>
+        <string name="k_telefono">telefono</string>
+        <string name="k_sitioweb">sitioWeb</string>
+        <string name="k_latitud">latitud</string>
+        <string name="k_longitud">longitud</string>
 
 
 </resources>
