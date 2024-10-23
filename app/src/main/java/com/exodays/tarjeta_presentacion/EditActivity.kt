@@ -37,6 +37,7 @@ class EditActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_send -> {
                 if (validateFields()) {
+                    sendData()
                     showConfirmationDialog()
                 } else {
                     Toast.makeText(this, "Verifica tus datos!!", Toast.LENGTH_SHORT).show()
@@ -61,6 +62,8 @@ class EditActivity : AppCompatActivity() {
         intent.putExtra(getString(R.string.k_latitud), binding.tieLatitud.text.toString())
         intent.putExtra(getString(R.string.k_longitud), binding.tieLongitud.text.toString())
 
+        setResult(RESULT_OK, intent)
+        finish()
 
     }
 
