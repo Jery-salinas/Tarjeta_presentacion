@@ -1,12 +1,18 @@
 package com.exodays.tarjeta_presentacion
 
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.exodays.tarjeta_presentacion.databinding.ActivityEdit2Binding
@@ -14,6 +20,9 @@ import com.exodays.tarjeta_presentacion.databinding.ActivityEdit2Binding
 class EditActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEdit2Binding
+    private val PICK_IMAGE_REQUEST = 1
+    private var imageUri: Uri? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +34,27 @@ class EditActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.tieNombre.setText(intent.extras?.getString("k_nombre"))
+        binding.tieCorreo.setText(intent.extras?.getString("k_correo"))
+        binding.tieTelefono.setText(intent.extras?.getString("k_telefono"))
+        binding.tieSitioWeb.setText(intent.extras?.getString("k_sitioweb"))
+        setupIntent()
+    }
+    private fun setupIntent() {
+        binding.btnImgSelect.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.type = "image/*"
+            startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            imageUri = data.data
+            binding.imgprofile.setImageURI(imageUri)
         }
     }
 
@@ -61,6 +91,7 @@ class EditActivity : AppCompatActivity() {
         intent.putExtra(getString(R.string.k_sitioweb), binding.tieSitioWeb.text.toString())
         intent.putExtra(getString(R.string.k_latitud), binding.tieLatitud.text.toString())
         intent.putExtra(getString(R.string.k_longitud), binding.tieLongitud.text.toString())
+        intent.putExtra("k_imageUri",imageUri.toString())
 
         setResult(RESULT_OK, intent)
         finish()

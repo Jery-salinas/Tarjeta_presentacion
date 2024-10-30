@@ -59,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="correo@ejemplo.com"
+
             android:textSize="@dimen/size_txt_label"
             android:textColor="@color/text_secondary"
             android:layout_marginTop="@dimen/margin_top_default"/>

@@ -48,6 +48,7 @@
                 app:layout_constraintEnd_toEndOf="@id/card_profile"
                 app:layout_constraintStart_toStartOf="@id/card_profile" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilMatricula"
             android:layout_width="match_parent"
