@@ -14,6 +14,6 @@
         <string name="k_sitioweb">sitioWeb</string>
         <string name="k_latitud">latitud</string>
         <string name="k_longitud">longitud</string>
-
+        <string name="k_image_uri">image_uri</string>
 
 </resources>

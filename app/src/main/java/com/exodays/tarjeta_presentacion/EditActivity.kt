@@ -2,7 +2,7 @@ package com.exodays.tarjeta_presentacion
 
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
+
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,8 +11,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.exodays.tarjeta_presentacion.databinding.ActivityEdit2Binding
@@ -22,6 +20,10 @@ class EditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEdit2Binding
     private val PICK_IMAGE_REQUEST = 1
     private var imageUri: Uri? = null
+
+    companion object {
+        private const val PICK_IMAGE_REQUEST = 1
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +56,7 @@ class EditActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             imageUri = data.data
-            binding.imgprofile.setImageURI(imageUri)
+            binding.imgprofile.setImageURI(imageUri)  // Establece la imagen en el ImageView
         }
     }
 
@@ -91,8 +93,11 @@ class EditActivity : AppCompatActivity() {
         intent.putExtra(getString(R.string.k_sitioweb), binding.tieSitioWeb.text.toString())
         intent.putExtra(getString(R.string.k_latitud), binding.tieLatitud.text.toString())
         intent.putExtra(getString(R.string.k_longitud), binding.tieLongitud.text.toString())
-        intent.putExtra("k_imageUri",imageUri.toString())
 
+// Añadir el URI de la imagen al Intent si se ha seleccionado una
+        imageUri?.let {
+            intent.putExtra(getString(R.string.k_image_uri), it.toString())
+        }
         setResult(RESULT_OK, intent)
         finish()
 

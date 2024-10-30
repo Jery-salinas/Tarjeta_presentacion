@@ -98,13 +98,14 @@ class MainActivity : AppCompatActivity() {
             val sitio = it.data?.getStringExtra(getString(R.string.k_sitioweb))
             latitud = it.data?.getStringExtra(getString(R.string.k_latitud))?.toDouble() ?: 0.0
             longitud = it.data?.getStringExtra(getString(R.string.k_longitud))?.toDouble() ?: 0.0
-            val imageUriString = it.data?.getStringExtra("K_imageUri")
 
-            updateUI(nombre!!, correo!!, telefono!!, sitio!!)
-            imageUriString?.let{uri->
-                binding.imgprofile.setImageURI(Uri.parse(uri))
+            // Obtener el URI de la imagen si está presente y mostrarla
+            val imageUriString = it.data?.getStringExtra(getString(R.string.k_image_uri))
+            imageUriString?.let { uriStr ->
+                binding.imgprofile.setImageURI(Uri.parse(uriStr))
 
             }
+            updateUI(nombre!!, correo!!, telefono!!, sitio!!)
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
